@@ -89,4 +89,5 @@ MEDIA_ROOT = '/home/maitri/my_python/SYS_DEVELOPMENT/lite/mysite/media/'
 #MEDIA_ROOT = (os.path.join(BASE_DIR, 'mysite/media/'),)
 #MEDIA_URL  = 'http://127.0.0.1:8000/media/'
 MEDIA_URL = '/media/'
-
+LOGIN_URL = '/login/'
+LOGIN_REDIRECT_URL = '/'

@@ -37,7 +37,9 @@
         View:
         <a href="{% url "photo.views.album" album.pk 'thumbnails' %}">thumbnails</a>
         <a href="{% url "photo.views.album" album.pk 'full' %}">full</a>
+        {% if user.is_authenticated %}
         <a href="{% url "photo.views.album" album.pk 'edit' %}">edit</a>
+        {% endif %}
         </div>
 
         {% if view == "edit" %}
@@ -54,8 +56,6 @@
 
             <!-- EDIT VIEW  -->
             {% if view == "edit" %}
-
-                <table>
                 <tr><td>
                 <a href="{% url "photo.views.image" img.pk %}"><img border="0" alt=""
                     src="{{ media_url }}{{ img.thumbnail2.name }}" /></a>
@@ -78,17 +78,29 @@
 
             <!-- THUMBNAILS VIEW  -->
             {% if view == "thumbnails" %}
+                <form action="{% url "photo.views.upload" img.pk %}" method="POST">{% csrf_token %}
                 <a href="{% url "photo.views.image" img.pk %}"><img border="0" alt=""
-                    src="{{ media_url }}{{ img.thumbnail2.name }}" /></a>
+                     src="{{ media_url }}{{ img.thumbnail2.name }}" /></a>
+                {% if user.is_authenticated %}
+                    <input type="checkbox" name="fb" value="{{ img.pk }}">
+                {% endif %}
             {% endif %}
+
         {% endfor %}
+        <!-- facebook upload  -->
+        {% if view == "thumbnails" %}
+            {% if user.is_authenticated %}
+                <p><input type="submit" value="Upload all selected to fb"></p>
+            <br />
+            {% endif %}
+        {% endif %}
+
 
         {% if view == "edit" %}
             <div id="update"><input type="submit" value="Update"></form></div>
         {% endif %}
     
      </ul>
-
         <!-- Next/Prev page links  -->
         {% if albums.object_list and albums.paginator.num_pages > 1 %}
         <div class="pagination">

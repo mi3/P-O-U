@@ -33,7 +33,7 @@
         <!-- Form  -->
         <ul>
             <div class="title">Search</div>
-                <form action="{% url photo.views.search %}" method="POST">{% csrf_token %}
+                <form action="{% url "photo.views.search" %}" method="POST">{% csrf_token %}
 
                 <div class="form">
                 Title: <input type="text" name="title" value="{{ prm.title }}" />
@@ -101,7 +101,7 @@
 
                         <table>
                         <tr><td class="center">
-                        <a href="{% url photo.views.image img.pk %}"><img border="0" alt=""
+                        <a href="{% url "photo.views.image" img.pk %}"><img border="0" alt=""
                             src="{{ media_url }}{{ img.thumbnail2.name }}" /></a><br />
                             {{ img.width }} x {{ img.height }}
                             </td>
@@ -124,7 +124,7 @@
 
                     <!-- COMPACT VIEW  -->
                     {% if prm.view == "view" %}
-                        <a href="{% url photo.views.image img.pk %}"><img border="0" alt=""
+                        <a href="{% url "photo.views.image" img.pk %}"><img border="0" alt=""
                             src="{{ media_url }}{{ img.thumbnail2.name }}" /></a>
                     {% endif %}
                 {% endfor %}

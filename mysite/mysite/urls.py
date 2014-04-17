@@ -5,13 +5,9 @@ from django.contrib import admin
 admin.autodiscover()
 
 urlpatterns = patterns('',
+    url(r'^login/$', 'django.contrib.auth.views.login', {'template_name': 'login.html'}, name="login"),
+    url(r'^logout/$', 'django.contrib.auth.views.logout', {'next_page': '/'}, name="logout"),    
     url(r'^admin/', include(admin.site.urls)),
     url(r'^', include('photo.urls')),
-    #url(r'^public/(?P<path>.*)$', 'django.views.static.serve',{'document_root': settings.MEDIA_ROOT}),
-    #url(r'^$', include('photo.urls')),
-    #url(r'^media/(?P<path>.*)$', 'django.views.static.serve', {
-    #        'document_root': settings.MEDIA_ROOT})
 
-#)
-# This helps displaying thumbnail.
 )+ static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

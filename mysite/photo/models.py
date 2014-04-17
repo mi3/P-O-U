@@ -6,6 +6,7 @@ from string import join
 import os
 from PIL import Image as PImage
 from django.conf import settings
+
 from django.core.files import File
 from os.path import join as pjoin
 from tempfile import *
@@ -30,7 +31,7 @@ class Tag(models.Model):
 
 class Image(models.Model):
     title = models.CharField(max_length=60, blank=True, null=True)
-    image = models.ImageField(upload_to="images/") #from src code 
+    image = models.ImageField(upload_to="images/")  
     thumbnail = models.ImageField(upload_to="images/", blank=True, null=True)
     tags = models.ManyToManyField(Tag, blank=True)
     albums = models.ManyToManyField(Album, blank=True)
@@ -47,7 +48,7 @@ class Image(models.Model):
         im = PImage.open(pjoin(settings.MEDIA_ROOT, self.image.name))
         self.width, self.height = im.size
 
-        # large thumbnail
+        # large thumbnail for album front view 
         fn, ext = os.path.splitext(self.image.name)
         im.thumbnail((128,128), PImage.ANTIALIAS)
         thumb_fn = fn + "-thumb2" + ext
@@ -56,7 +57,7 @@ class Image(models.Model):
         self.thumbnail2.save(thumb_fn, File(open(tf2.name)), save=False)
         tf2.close()
 
-        # small thumbnail
+        # small thumbnail for admin view 
         im.thumbnail((40,40), PImage.ANTIALIAS)
         thumb_fn = fn + "-thumb" + ext
         tf = NamedTemporaryFile()

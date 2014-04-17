@@ -3,14 +3,14 @@
     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
 <head>
-    <title>{% block title %}PhotoApp{% endblock %}</title>
+    <h1>{% block title %}Photo Organizer & Uploader{% endblock %}</h1>
     <!-- <meta http-equiv="refresh" content="2">  -->
     <link rel="stylesheet" href="/media/style.css" type="text/css" media="screen"
       charset="utf-8" />
 
     <style type="text/css">
         * {
-            color: #555;
+            color: #555; 
             font-size: 0.95em;
         }
 
@@ -36,6 +36,7 @@
         #container { margin: auto; width: 800px; border: 0px solid; }
         p { font-size: 1.1em; }
         h3 { margin-right: 30px; display: inline; }
+    
     </style>
 
 </head>
@@ -47,12 +48,22 @@
             {% block nav-global %}
 
                 <!-- MENU -->
-                <h3><a href="{% url "photo.views.main" %}">PhotoApp</a></h3>
+                <P align=left> 
+                <h1><a href="{% url "photo.views.main" %}">View-Albums</a></h1>
+                </P>
+             {% if user.is_authenticated %}
                 {% if user.is_staff %}
+                <li>
                 <a href="{% url "admin:index" %}">Admin</a>
                 <a href="{% url "admin:photo_image_add" %}">Add Image</a>
+                <a href="{% url "photo.views.search" %}">search-sort</a></h1>
+                <a href="http://facebook.com" target="_blank">logout facebook</a>
+                </li>
                 {% endif %}
-
+                <li><a href="{% url "logout" %}">logout</a></li>
+             {% else %}
+                <li><a href="{% url "login" %}">login</a></li>           
+             {% endif %}
             {% endblock %}
         </div>
 

@@ -1,28 +1,14 @@
 from django.db import models
 from django.contrib.auth.models import User
 from django.contrib import admin
-
 from string import join
 import os
 from PIL import Image as PImage
 from django.conf import settings
-
 from django.core.files import File
 from os.path import join as pjoin
 from tempfile import *
 
-
-class Album(models.Model):
-    title = models.CharField(max_length=60)
-    public = models.BooleanField(default=False)
-    def __unicode__(self):
-        return self.title
-    
-    def images(self):
-        lst = [x.image.name for x in self.image_set.all()]
-        lst = ["<a href='/media/%s'>%s</a>" % (x, x.split('/')[-1]) for x in lst]
-        return join(lst, ', ')
-    images.allow_tags = True
 
 class Tag(models.Model):
     tag = models.CharField(max_length=50)
@@ -34,7 +20,6 @@ class Image(models.Model):
     image = models.ImageField(upload_to="images/")  
     thumbnail = models.ImageField(upload_to="images/", blank=True, null=True)
     tags = models.ManyToManyField(Tag, blank=True)
-    albums = models.ManyToManyField(Album, blank=True)
     created = models.DateTimeField(auto_now_add=True)
     rating = models.IntegerField(default=50)
     width = models.IntegerField(blank=True, null=True)
@@ -48,7 +33,7 @@ class Image(models.Model):
         im = PImage.open(pjoin(settings.MEDIA_ROOT, self.image.name))
         self.width, self.height = im.size
 
-        # large thumbnail for album front view 
+        # large thumbnail to show it in front page
         fn, ext = os.path.splitext(self.image.name)
         im.thumbnail((128,128), PImage.ANTIALIAS)
         thumb_fn = fn + "-thumb2" + ext
@@ -80,7 +65,8 @@ class Image(models.Model):
         return str(join(lst, ', '))
 
     def albums_(self):
-        lst = [x[1] for x in self.albums.values_list()]
+        album_obj = Album.objects.filter(pics = self)
+        lst = [p.title for p in album_obj]
         return str(join(lst, ', '))
 
     def thumbnail_(self):
@@ -90,18 +76,17 @@ class Image(models.Model):
     thumbnail_.allow_tags = True
 
 
-class AlbumAdmin(admin.ModelAdmin):
-    search_fields = ["title"]
-    list_display = ["title"]
-
-class TagAdmin(admin.ModelAdmin):
-    list_display = ["tag"]
-
-class ImageAdmin(admin.ModelAdmin):
-    list_display = ["__unicode__", "title", "user", "rating", "size", "tags_", "albums_", "thumbnail_", "created"]
-    list_filter = ["tags", "albums", "user"]
-
-    def save_model(self, request, obj, form, change):
-        if not obj.user: obj.user = request.user
-        obj.save()
+class Album(models.Model):
+    title = models.CharField(max_length=60)
+    public = models.BooleanField(default=False)
+    pics = models.ManyToManyField(Image, blank=True)
+    
+    def __unicode__(self):
+        return self.title
+    
+    def images(self):
+        lst = [x.image.name for x in self.pics.all()]
+        lst = ["<a href='/media/%s'>%s</a>" % (x, x.split('/')[-1]) for x in lst]
+        return join(lst, ', ')
+    images.allow_tags = True
 

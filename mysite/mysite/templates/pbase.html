@@ -1,16 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
-    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<html>
 <head>
-    <h1>{% block title %}Photo Organizer & Uploader{% endblock %}</h1>
-    <!-- <meta http-equiv="refresh" content="2">  -->
-    <link rel="stylesheet" href="/media/style.css" type="text/css" media="screen"
-      charset="utf-8" />
-
+    <h1 align=right > {% block title %} Photo Organizer & Uploader{% endblock %}</h1>
+    <body background="/media/2dyVEsu.jpg">
     <style type="text/css">
         * {
-            color: #555; 
+            color: Gold ; 
             font-size: 0.95em;
         }
 
@@ -44,27 +39,27 @@
 <body>
     <div id="sidebar"> {% block sidebar %} {% endblock %} </div>
     <div id="container">
-        <div id="menu">
+        <div id="header">
+        <ul id="control-bar">
             {% block nav-global %}
-
                 <!-- MENU -->
                 <P align=left> 
-                <h1><a href="{% url "photo.views.main" %}">View-Albums</a></h1>
+                <h1 align=right ><a href="{% url "photo.views.main" %}" style="color:Gold" >Home</a></h1>
                 </P>
+             <P align=right>
              {% if user.is_authenticated %}
                 {% if user.is_staff %}
-                <li>
-                <a href="{% url "admin:index" %}">Admin</a>
-                <a href="{% url "admin:photo_image_add" %}">Add Image</a>
-                <a href="{% url "photo.views.search" %}">search-sort</a></h1>
-                <a href="http://facebook.com" target="_blank">logout facebook</a>
-                </li>
+                <a href="{% url "admin:index" %}" style="color:Chartreuse" >Admin</a>
+                <a href="{% url "photo.views.search" %}" style="color:Gold" >search-sort</a></h1>
+                <a href="http://facebook.com" target="_blank" style="color:Cyan" >logout fb</a>
                 {% endif %}
-                <li><a href="{% url "logout" %}">logout</a></li>
+                <a href="{% url "logout" %}" style="color:Khaki" >logout</a>
              {% else %}
-                <li><a href="{% url "login" %}">login</a></li>           
+                <a href="{% url "login" %}" style="color:Khaki" >login</a>          
              {% endif %}
+            </P>
             {% endblock %}
+        </ul>
         </div>
 
         <div id="content">

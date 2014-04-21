@@ -21,7 +21,7 @@
         <ul>
             {% for album in albums.object_list %}
                 <div class="title"><a href="{% url "photo.views.album" album.pk %}">{{ album.title }}</a>
-                        ({{ album.image_set.count }} images)</div>
+                        ({{ album.pics.count }} images)</div>
                 <ul>
                     {% for img in album.images %}
                         <a href="{{ media_url }}{{ img.image.name }}"><img border="0" alt=""

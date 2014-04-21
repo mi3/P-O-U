@@ -38,7 +38,7 @@
         <a href="{% url "photo.views.album" album.pk 'thumbnails' %}">thumbnails</a>
         <a href="{% url "photo.views.album" album.pk 'full' %}">full</a>
         {% if user.is_authenticated %}
-        <a href="{% url "photo.views.album" album.pk 'edit' %}">edit</a>
+        <a href="{% url "photo.views.album" album.pk 'edit' %}">update</a>
         {% endif %}
         </div>
 
@@ -61,10 +61,10 @@
                     src="{{ media_url }}{{ img.thumbnail2.name }}" /></a>
                     </td>
                     <td>
-        Title: <input type="text" name="title-{{ img.pk }}" value="{{ img.title }}" /><br />
-        Tags: <input type="text" name="tags-{{ img.pk }}" value="{{ img.tag_lst }}" /><br />
+        Title: <input type="text" name="title-{{ img.pk }}" value="{{ img.title }}" style="color:DarkBlue;" /><br />
+        Tags: <input type="text" name="tags-{{ img.pk }}" value="{{ img.tag_lst }}" style="color:DarkBlue;" /><br />
         Rating:
-        <input size="3" type="text" name="rating-{{ img.pk }}" value="{{ img.rating }}" /><br />
+        <input size="3" type="text" name="rating-{{ img.pk }}" value="{{ img.rating }}" style="color:DarkBlue;" /><br />
 
                 {% for album in albums %}
                     {{ album.title }}:
@@ -90,14 +90,14 @@
         <!-- facebook upload  -->
         {% if view == "thumbnails" %}
             {% if user.is_authenticated %}
-                <p><input type="submit" value="Upload all selected to fb"></p>
+                <p><input type="submit" value="Upload all selected to fb" style="color:Red;"> </p>
             <br />
             {% endif %}
         {% endif %}
 
 
         {% if view == "edit" %}
-            <div id="update"><input type="submit" value="Update"></form></div>
+            <div id="update"><input type="submit" value="Update" style="color:Red;" ></form></div>
         {% endif %}
     
      </ul>

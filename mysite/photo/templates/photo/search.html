@@ -36,21 +36,21 @@
                 <form action="{% url "photo.views.search" %}" method="POST">{% csrf_token %}
 
                 <div class="form">
-                Title: <input type="text" name="title" value="{{ prm.title }}" />
-                Filename: <input type="text" name="filename" value="{{ prm.filename }}" />
-                Tags: <input type="text" name="tags" value="{{ prm.tags }}" /><br />
+                Title: <input type="text" name="title" value="{{ prm.title }}"style="color:DarkBlue;" />
+                Filename: <input type="text" name="filename" value="{{ prm.filename }}"style="color:DarkBlue;" />
+                Tags: <input type="text" name="tags" value="{{ prm.tags }}"style="color:DarkBlue;" /><br />
                 </div>
 
                 <div class="form">
                 Rating:
-                <input size="3" type="text" name="rating_from" value="{{ prm.rating_from }}" /> to
-                <input size="3" type="text" name="rating_to" value="{{ prm.rating_to }}" />
+                <input size="3" type="text" name="rating_from" value="{{ prm.rating_from }}"style="color:DarkBlue;" /> to
+                <input size="3" type="text" name="rating_to" value="{{ prm.rating_to }}"style="color:DarkBlue;" />
                 Width:
-                <input size="3" type="text" name="width_from" value="{{ prm.width_from }}" /> to
-                <input size="3" type="text" name="width_to" value="{{ prm.width_to }}" />
+                <input size="3" type="text" name="width_from" value="{{ prm.width_from }}"style="color:DarkBlue;" /> to
+                <input size="3" type="text" name="width_to" value="{{ prm.width_to }}"style="color:DarkBlue;" />
                 Height:
-                <input size="3" type="text" name="height_from" value="{{ prm.height_from }}" /> to
-                <input size="3" type="text" name="height_to" value="{{ prm.height_to }}" />
+                <input size="3" type="text" name="height_from" value="{{ prm.height_from }}"style="color:DarkBlue;" /> to
+                <input size="3" type="text" name="height_to" value="{{ prm.height_to }}"style="color:DarkBlue;" />
                 </div>
 
                 <div class="form">
@@ -70,25 +70,25 @@
                 </select>
 
                 Mode:
-                <select name="view">
-                    <option value="view" {% if prm.view == "view" %}selected{% endif %}>view</option>
-                    <option value="edit" {% if prm.view == "edit" %}selected{% endif %}>edit</option>
+                <select name="view" style="color:DarkBlue;">
+                    <option value="view" style="color:DarkBlue;" {% if prm.view == "view" %}selected{% endif %}>view</option>
+                    <option value="edit" style="color:DarkBlue;" {% if prm.view == "edit" %}selected{% endif %}>edit</option>
                 </select>
 
                 Sort:
-                <select name="sort">
-                    <option value="created" {% if prm.sort == "created" %}selected{% endif %}>date</option>
-                    <option value="rating" {% if prm.sort == "rating" %}selected{% endif %}>rating</option>
-                    <option value="width" {% if prm.sort == "width" %}selected{% endif %}>width</option>
-                    <option value="height" {% if prm.sort == "height" %}selected{% endif %}>height</option>
+                <select name="sort" style="color:DarkBlue;">
+                    <option value="created" style="color:DarkBlue;" {% if prm.sort == "created" %}selected{% endif %}>date</option>
+                    <option value="rating" style="color:DarkBlue;" {% if prm.sort == "rating" %}selected{% endif %}>rating</option>
+                    <option value="width" style="color:DarkBlue;" {% if prm.sort == "width" %}selected{% endif %}>width</option>
+                    <option value="height" style="color:DarkBlue;" {% if prm.sort == "height" %}selected{% endif %}>height</option>
                 </select>
 
-                <select name="asc_desc">
-                    <option value="asc" {% if prm.sort == "asc" %}selected{% endif %}>ascending</option>
-                    <option value="desc" {% if prm.sort == "desc" %}selected{% endif %}>descending</option>
+                <select name="asc_desc" style="color:DarkBlue;">
+                    <option value="asc" style="color:DarkBlue;" {% if prm.sort == "asc" %}selected{% endif %}>ascending</option>
+                    <option value="desc" style="color:DarkBlue;" {% if prm.sort == "desc" %}selected{% endif %}>descending</option>
                 </select>
 
-                <input type="submit" value="Apply" />
+                <input type="submit" value="Apply" style="color:Red;" />
                 </div>
 
             <!-- Results  -->
@@ -107,10 +107,10 @@
                             </td>
                             <td>
                 {{ img.created }} <br />
-                Title: <input type="text" name="title-{{ img.pk }}" value="{{ img.title }}" /><br />
-                Tags: <input type="text" name="tags-{{ img.pk }}" value="{{ img.tag_lst }}" /><br />
+                Title: <input type="text" name="title-{{ img.pk }}" value="{{ img.title }}"  style="color:DarkBlue;" /><br />
+                Tags: <input type="text" name="tags-{{ img.pk }}" value="{{ img.tag_lst }}"  style="color:DarkBlue;" /><br />
                 Rating:
-                <input size="3" type="text" name="rating-{{ img.pk }}" value="{{ img.rating }}" /><br />
+                <input size="3" type="text"  name="rating-{{ img.pk }}" value="{{ img.rating }}" /><br />
 
                         {% for album in albums %}
                             {{ album.title }}:

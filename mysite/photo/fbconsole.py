@@ -17,7 +17,6 @@ from urllib import urlencode
 from pprint import pprint
 
 APP_ID = '179745182062082'
-#APP_ID = '145634995501895'
 SERVER_PORT = 8080
 REDIRECT_URI = 'http://127.0.0.1:%s/' % SERVER_PORT
 ACCESS_TOKEN = None

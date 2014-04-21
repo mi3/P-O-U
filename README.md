@@ -9,7 +9,7 @@ Django-admin multiple file up-loader https://github.com/gkuhn1/django-admin-mult
 facebookconsloe - http://blog.carduner.net/2011/09/06/easy-facebook-scripting-in-python/ 
 
 Website background image is licensed by www.rgbstock.com. 
-Images (example) uploaded are just downloaded from google , and will not be used for any commercial purposes. 
+Images (example) uploaded are random images from google.com, and will not be used for any commercial purposes. 
 
 
 

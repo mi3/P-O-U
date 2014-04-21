@@ -1,7 +1,7 @@
 P-O-U
 =====
 
-Project - Photo organizer an uploader (for Learning )
+Project - Photo organizer & uploader (for Learning )
 
 Acknowledgement :
 Django by example - http://lightbird.net/, 
